@@ -21,3 +21,7 @@ You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) 
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
 4. Start ThreatHunter: `python3 threathunter.py`
+
+## ThreatHunter demo
+### URL Scan
+![IMAGE](/threathunter-demo/threathunter-ip-scan.png)
