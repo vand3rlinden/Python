@@ -24,4 +24,4 @@ You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) 
 
 ## ThreatHunter demo
 ### URL Scan
-![IMAGE](/threathunter-demo/threathunter-ip-scan.png)
+![IMAGE](threathunter-demo/threathunter-ip-scan.png)
