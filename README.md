@@ -3,7 +3,7 @@ This repository contains Python scripts that can be used to perform certain task
 
 ## Current Python scripts
 - [ThreatHunterX](https://github.com/vand3rlinden/Python/tree/main/ThreatHunterX)
-  - ThreatHunterX is a tool designed to support SOC analysts. A primary goal of ThreatHunterX is to perform routine checks, freeing up analysts' time for more in-depth analysis in the same timeframe.
+  - ThreatHunterX is a tool designed to assist SOC analysts. The primary goal of ThreatHunterX is to perform routine checks and free up analyst time for more in-depth analysis in the same timeframe.
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
