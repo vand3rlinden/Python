@@ -24,7 +24,7 @@ def format_virustotal_result(result):
     permalink = result.get('permalink', 'N/A')
 
     print(f"{GREEN}Scan Date:{RESET} {scan_date}")
-    print(f"{GREEN}Positives:{RESET} {positives} out of {total}")
+    print(f"{GREEN}Positives:{RESET} {positives} out of {total} security vendors flagged this entry as malicious")
     print(f"{GREEN}Permalink to Full Report:{RESET} {permalink}")
 
     if 'scans' in result:
