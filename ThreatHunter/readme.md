@@ -1,5 +1,5 @@
 # Overview
-ThreatHunter is a tool designed to assist SOC analysts by automating aspects of their workflow. One of ThreatGuard’s primary objectives is to handle routine checks, freeing up analysts’ time for more in-depth analysis within the same time frame.
+ThreatHunter is a tool designed to assist SOC analysts by automating aspects of their workflow. One of ThreatHunters’s primary objectives is to handle routine checks, freeing up analysts’ time for more in-depth analysis within the same time frame.
 
 ## Requirements
 1. API Key for VirusTotal 
