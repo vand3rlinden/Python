@@ -1,5 +1,5 @@
 # Overview
-ThreatHunter is a tool designed to assist SOC analysts by automating aspects of their workflow. One of ThreatHunters’s primary objectives is to handle routine checks, freeing up analysts’ time for more in-depth analysis within the same time frame.
+ThreatHunterX is a tool designed to support SOC analysts. A primary goal of ThreatHunterX is to perform routine checks, freeing up analysts' time for more in-depth analysis in the same timeframe.
 
 ## Requirements
 1. API Key for VirusTotal 
@@ -17,17 +17,17 @@ You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) 
 - Daily Limit: 1000 checks
 
 ## Start ThreatHunter
-1. Place `threathunter.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
+1. Place `threathunterx.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
-4. Start ThreatHunter: `python3 threathunter.py`
+4. Start ThreatHunter: `python3 threathunterx.py`
 
-## ThreatHunter demo
+## ThreatHunterX demo
 #### URL Scan:
-![IMAGE](threathunter-demo/threathunter-url-scan.png)
+![IMAGE](threathunterx-demo/threathunterx-url-scan.png)
 
 #### FileHash Scan:
-![IMAGE](threathunter-demo/threathunter-filehash-scan.png)
+![IMAGE](threathunterx-demo/threathunterx-filehash-scan.png)
 
 #### IP Scan:
-![IMAGE](threathunter-demo/threathunter-ip-scan.png)
+![IMAGE](threathunterx-demo/threathunterx-ip-scan.png)
