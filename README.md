@@ -16,4 +16,4 @@ To avoid the risks associated with installing packages directly into the system 
 
 1. Create a Virtual Environment folder in your root path: `python3 -m venv ~/py_envs`
 2. Activate the Virtual Environment: `source ~/py_envs/bin/activate`
-3. Install Python package `requests` in the Virtual Environment: `python3 -m pip install requests`
+3. Install Python packages such as `requests` in the Virtual Environment: `python3 -m pip install requests`
