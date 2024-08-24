@@ -20,7 +20,7 @@ You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) 
 1. Place `threathunterx.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
-4. Start ThreatHunter: `python3 threathunterx.py`
+4. Start ThreatHunterX: `python3 threathunterx.py`
 
 ## ThreatHunterX demo
 #### URL Scan:
