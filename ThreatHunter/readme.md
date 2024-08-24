@@ -23,5 +23,11 @@ You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) 
 4. Start ThreatHunter: `python3 threathunter.py`
 
 ## ThreatHunter demo
-### URL Scan
+#### URL Scan:
+![IMAGE](threathunter-demo/threathunter-url-scan.png)
+
+#### FileHash Scan:
+![IMAGE](threathunter-demo/threathunter-filehash-scan.png)
+
+#### IP Scan:
 ![IMAGE](threathunter-demo/threathunter-ip-scan.png)
