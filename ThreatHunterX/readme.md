@@ -31,16 +31,16 @@ You can register with [Scamalytics](https://scamalytics.com/ip/api/enquiry?month
 4. Start ThreatHunterX: `python3 threathunterx.py`
 
 ## ThreatHunterX demo
-#### Menu:
-![IMAGE](threathunterx-demo/threathunterx-filehash-menu.png)
+### Menu:
+![IMAGE](threathunterx-demo/threathunterx-menu.png)
 
-#### URL Scan:
+### URL Scan:
 ![IMAGE](threathunterx-demo/threathunterx-url-scan.png)
 
-#### FileHash Scan:
+### FileHash Scan:
 ![IMAGE](threathunterx-demo/threathunterx-filehash-scan.png)
 
-#### IP Scans:
+### IP Scans:
 - AbuseIPDB:
 
 ![IMAGE](threathunterx-demo/threathunterx-ip-scan3.png)
