@@ -16,13 +16,16 @@ You can register with [VirusTotal](https://www.virustotal.com/gui/join-us) to ge
 You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) to get a free API key with the following limits:
 - Daily Limit: 1000 checks
 
-## Start ThreatHunter
+## Start ThreatHunterX
 1. Place `threathunterx.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
 4. Start ThreatHunterX: `python3 threathunterx.py`
 
 ## ThreatHunterX demo
+#### Menu:
+![IMAGE](threathunterx-demo/threathunterx-filehash-menu.png)
+
 #### URL Scan:
 ![IMAGE](threathunterx-demo/threathunterx-url-scan.png)
 

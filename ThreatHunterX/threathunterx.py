@@ -1,5 +1,7 @@
 import hashlib
 import requests
+import pyfiglet
+from colorama import Fore, Style
 
 # Add your API keys here
 VIRUSTOTAL_API_KEY = "your_virustotal_api_key"
@@ -8,6 +10,12 @@ ABUSEIPDB_API_KEY = "your_abuseipdb_api_key"
 # ANSI escape codes for colors
 GREEN = "\033[92m"
 RESET = "\033[0m"
+
+# Generate ASCII art
+ascii_art = pyfiglet.figlet_format("ThreatHunterX")
+
+# Display the ASCII art in green
+print(Fore.GREEN + ascii_art + Style.RESET_ALL)
 
 def print_menu():
     print(f"\n{GREEN}Menu:{RESET}")
