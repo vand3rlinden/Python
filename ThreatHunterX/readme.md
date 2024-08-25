@@ -4,7 +4,9 @@ ThreatHunterX is a tool designed to assist SOC Analysts. The primary goal of Thr
 ## Requirements
 1. API Key for VirusTotal 
 2. API Key for AbuseIPDB 
-3. Python packages `requests`: `python3 -m pip install requests`
+3. Python packages: 
+   - `requests`: `python3 -m pip install requests`
+   - `pyfiglet` and `colorama`: `python3 -m pip install pyfiglet colorama`
 
 ## API Key for VirusTotal 
 You can register with [VirusTotal](https://www.virustotal.com/gui/join-us) to get a free API key with the following limits:
