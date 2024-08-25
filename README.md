@@ -4,6 +4,8 @@ This repository contains Python scripts that can be used to perform certain task
 ## Current Python scripts
 - [ThreatHunterX](https://github.com/vand3rlinden/Python/tree/main/ThreatHunterX)
   - ThreatHunterX is a tool designed to assist SOC Analysts. The primary goal of ThreatHunterX is to perform routine checks and free up time for more in-depth analysis.
+- [AuthNinja](https://github.com/vand3rlinden/Python/tree/main/AuthNinja)
+  - AuthNinja is a powerful tool designed to quickly check outbound email authentication settings such as SPF, DKIM, and DMARC directly from the terminal. Verify your email security effortlessly with just a few commands.
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
@@ -12,7 +14,7 @@ This repository contains Python scripts that can be used to perform certain task
 2. Verify the installation: `python3 --version`
 
 ## Installing Python Packages using pip in a Virtual Environment
-To avoid the risks associated with installing packages directly into the system Python environment, you can use a virtual environment. This is a recommended approach as it keeps your system Python environment clean and avoids potential conflicts.
+To avoid the risks associated with installing packages directly on your system, you can run Python in a virtual environment. This is a recommended approach because it keeps your system clean and avoids potential conflicts.
 
 1. Create a Virtual Environment folder in your root path: `python3 -m venv ~/py_envs`
 2. Activate the Virtual Environment: `source ~/py_envs/bin/activate`
