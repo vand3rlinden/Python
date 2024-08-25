@@ -1,6 +1,6 @@
 ![IMAGE](threathunterx-demo/threathunterx-logo.png)
 
-ThreatHunterX is a tool designed to assist SOC Analysts. The primary goal of ThreatHunterX is to perform routine checks and free up time for more in-depth analysis.
+**ThreatHunterX** is a tool designed to assist SOC Analysts. The primary goal of **ThreatHunterX** is to perform routine checks and free up time for more in-depth analysis.
 
 ## Requirements
 1. API Key for VirusTotal 
