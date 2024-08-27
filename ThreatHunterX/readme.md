@@ -15,14 +15,17 @@ You can register with [VirusTotal](https://www.virustotal.com/gui/join-us) to ge
 - Request rate: 4 lookups / min
 - Daily quota: 500 lookups / day
 - Monthly quota: 15.5 K lookups / month
+- [API documentation](https://docs.virustotal.com/reference/overview)
 
 ## API Key for AbuseIPDB
 You can register with [AbuseIPDB](https://www.abuseipdb.com/register?plan=free) to get a **free** API key with the following limits:
 - Daily Limit: 1000 checks
+- [API documentation](https://docs.abuseipdb.com)
 
 ## API Key for Scamalytics
 You can register with [Scamalytics](https://scamalytics.com/ip/api/enquiry?monthly_api_calls=5000) to get a **free** API key with the following limits:
 - Monthly Requests: 5000
+- [API documentation](https://scamalytics.com/docs/scamalytics_IP_Fraud_Score_API_2.2.pdf)
 
 ## Start ThreatHunterX
 1. Place `threathunterx.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
