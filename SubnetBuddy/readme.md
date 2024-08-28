@@ -13,7 +13,7 @@
 
 ## SubnetBuddy demo
 ### Menu:
-![IMAGE](subnetBuddy-demo/subnetbuddy-menu.png)
+![IMAGE](subnetbuddy-demo/subnetbuddy-menu.png)
 
 ### Subnet calculation results:
-![IMAGE](subnetBuddy-demo/subnetbuddy-calc.png)
+![IMAGE](subnetbuddy-demo/subnetbuddy-calc.png)
