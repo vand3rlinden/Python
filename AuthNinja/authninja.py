@@ -18,10 +18,11 @@ def query_spf(domain):
     try:
         answers = dns.resolver.resolve(domain, 'TXT')
         for rdata in answers:
-            for txt_string in rdata.strings:
-                if txt_string.decode().startswith("v=spf1"):
-                    print(f"{GREEN}SPF record for {domain}:{RESET} {txt_string.decode()}")
-                    return
+            # Concatenate all strings within the TXT record (DNS TXT records are limited to 255 characters per string)
+            spf_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
+            if spf_record.startswith("v=spf1"):
+                print(f"{GREEN}SPF record for {domain}:{RESET} {spf_record}")
+                return
         print(f"{GREEN}No SPF record found for {domain}.{RESET}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{GREEN}No DNS records found for {domain}.{RESET}")
@@ -34,7 +35,9 @@ def query_dkim(domain, selector):
         dkim_domain = f"{selector}._domainkey.{domain}"
         answers = dns.resolver.resolve(dkim_domain, 'TXT')
         for rdata in answers:
-            print(f"{GREEN}DKIM record for {dkim_domain}:{RESET} {rdata.to_text()}")
+            # Concatenate all strings within the TXT record (DNS TXT records are limited to 255 characters per string)
+            dkim_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
+            print(f"{GREEN}DKIM record for {dkim_domain}:{RESET} {dkim_record}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{GREEN}No DKIM record found for {dkim_domain}.{RESET}")
     except Exception as e:
