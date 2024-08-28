@@ -55,7 +55,7 @@ def main_menu():
         
         again = input(f"{GREEN}Do you want to calculate another subnet? (y/n): {END}").lower()
         if again != 'y':
-            print("Exiting Subnet Calculator.")
+            print("Exiting SubnetBuddy")
             break
 
 if __name__ == "__main__":
