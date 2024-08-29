@@ -21,7 +21,8 @@ def query_spf(domain):
             # Concatenate all strings within the TXT record (DNS TXT records are limited to 255 characters per string)
             spf_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
             if spf_record.startswith("v=spf1"):
-                print(f"{GREEN}SPF record for {domain}:{RESET} {spf_record}")
+                print(f"{GREEN}SPF record for {domain}:{RESET}")
+                print(f"{spf_record}")
                 return
         print(f"{GREEN}No SPF record found for {domain}.{RESET}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
@@ -37,7 +38,8 @@ def query_dkim(domain, selector):
         for rdata in answers:
             # Concatenate all strings within the TXT record (DNS TXT records are limited to 255 characters per string)
             dkim_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
-            print(f"{GREEN}DKIM record for {dkim_domain}:{RESET} {dkim_record}")
+            print(f"{GREEN}DKIM record for {dkim_domain}:{RESET}")
+            print(f"{dkim_record}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{GREEN}No DKIM record found for {dkim_domain}.{RESET}")
     except Exception as e:
@@ -49,7 +51,9 @@ def query_dmarc(domain):
         dmarc_domain = f"_dmarc.{domain}"
         answers = dns.resolver.resolve(dmarc_domain, 'TXT')
         for rdata in answers:
-            print(f"{GREEN}DMARC record for {dmarc_domain}:{RESET} {rdata.to_text()}")
+            dmarc_record = rdata.to_text()
+            print(f"{GREEN}DMARC record for {dmarc_domain}:{RESET}")
+            print(f"{dmarc_record}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{GREEN}No DMARC record found for {dmarc_domain}.{RESET}")
     except Exception as e:
