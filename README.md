@@ -8,6 +8,8 @@ This repository contains Python scripts that can be used to perform certain task
   - AuthNinja is a tool designed to quickly check outbound email authentication settings such as SPF, DKIM, and DMARC directly from the terminal. Verify your email security effortlessly with just a few commands.
 - [SubnetBuddy](https://github.com/vand3rlinden/Python/tree/main/SubnetBuddy)
   - SubnetBuddy is a tool that simplifies and streamlines the process of calculating subnets. Whether you're a network engineer, system administrator, or working in cybersecurity, SubnetBuddy provides an intuitive interface for calculating subnets, subnet masks, and IP ranges with ease.
+- [HeadingExporter](https://github.com/vand3rlinden/Python/tree/main/HeadingExporter)
+  - HeadingExporter is designed to quickly export all headings and subheadings from a `.docx` file.
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
