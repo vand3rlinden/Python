@@ -22,8 +22,11 @@ message = Mail(
 try:
     sg = SendGridAPIClient(SENDGRID_API_KEY)
     response = sg.send(message)
-    print(f'Status Code: {response.status_code}')
-    print(f'Body: {response.body}')
-    print(f'Headers: {response.headers}')
+    if 200 <= response.status_code < 300:
+        print('✅ Email sent successfully!')
+    else:
+        print(f'⚠️ Failed to send email. Status code: {response.status_code}')
+        print(f'Body: {response.body}')
 except Exception as e:
-    print(f'An error occurred: {e}')
+    print('❌ An error occurred while sending the email:')
+    print(e)
