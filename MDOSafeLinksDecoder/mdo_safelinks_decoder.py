@@ -25,7 +25,7 @@ def main_menu():
     print(f"{GREEN}Welcome to the MDO SafeLinks Decoder - by VAND3RLINDEN!{RESET}")
     print("Choose an option:")
     print("1. Decode a Safelink URL")
-    print("2. Exit - No links to decode")
+    print("2. Exit - No Safelink to decode")
 
     choice = input("Enter your choice (1/2): ").strip()
 
