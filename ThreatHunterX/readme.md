@@ -28,7 +28,7 @@ You can register with [Scamalytics](https://scamalytics.com/ip/api/enquiry?month
 - [API documentation](https://scamalytics.com/docs/scamalytics_IP_Fraud_Score_API_2.2.pdf)
 
 ## Start ThreatHunterX
-1. Place `threathunterx.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
+1. Place `threathunterx.py` in a local folder, such as your [Python virtual environment](https://github.com/vand3rlinden/Python?tab=readme-ov-file#installation-of-python): `~/py_envs/scripts`.
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
 4. Start ThreatHunterX: `python3 threathunterx.py`

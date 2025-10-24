@@ -8,7 +8,7 @@
 - `dnspython`: `python3 -m pip install dnspython`
 
 ## Start AuthNinja
-1. Place `authninja.py` in a local folder, such as your Python virtual environment: `~/py_envs/scripts`.
+1. Place `authninja.py` in a local folder, such as your [Python virtual environment](https://github.com/vand3rlinden/Python?tab=readme-ov-file#installation-of-python): `~/py_envs/scripts`.
 2. Enable your virtual Python environment: `source ~/py_envs/bin/activate`
 3. Browse to the path: `cd py_envs/scripts`
 4. Start AuthNinja: `python3 authninja.py`
