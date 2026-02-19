@@ -10,6 +10,7 @@ This repository contains Python projects that can be used to perform certain tas
   - SubnetBuddy is a tool that simplifies and streamlines the process of calculating subnets. Whether you're a network engineer, system administrator, or working in cybersecurity, SubnetBuddy provides an intuitive interface for calculating subnets, subnet masks, and IP ranges with ease.
 - [MDO SafeLinks Decoder](https://github.com/vand3rlinden/Python/tree/main/MDOSafeLinksDecoder)
   - MDO SafeLinks Decoder is created to decode SafeLinks URLs locally without using any online third-party tools. Since most SafeLinks URLs contain the user’s UPN, it is not confidential to decode them through online third-party tools.
+- [Base64Decoder](https://github.com/vand3rlinden/Python/tree/main/Base64Decoder)
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
