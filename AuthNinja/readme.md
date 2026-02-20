@@ -1,6 +1,6 @@
 ![IMAGE](authninja-demo/authninja-logo.png)
 
-**AuthNinja** is a tool designed to quickly check outbound email authentication settings such as **SPF, DKIM, DMARC, MTA-STS and SMTP DANE** directly from the terminal. Verify your email security with just a few commands.
+**AuthNinja** is a tool designed to quickly check outbound email authentication settings such as **SPF, DKIM, DMARC, MTA-STS and SMTP DANE** directly from the terminal.
 
 ## Required Python packages
 - `requests`: `python3 -m pip install requests`
