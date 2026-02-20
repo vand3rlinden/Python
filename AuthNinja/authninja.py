@@ -136,10 +136,111 @@ def query_dkim(domain, selector):
             dkim_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
             print(f"{GREEN}DKIM record for {dkim_domain}:{RESET}")
             print(f"{dkim_record}")
+            check_dkim_key_length(dkim_record)
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{RED}No DKIM record found for {dkim_domain}.{RESET}")
     except Exception as e:
         print(f"{RED}An error occurred: {e}{RESET}")
+
+
+# DKIM Public Key Length Checker
+def check_dkim_key_length(dkim_record):
+    """Extract and check the bit length of the DKIM public key."""
+    import base64
+
+    print(f"\n{GREEN}--- DKIM Public Key Length Check ---{RESET}")
+    try:
+        # Extract the base64-encoded public key from the p= tag
+        p_value = None
+        for tag in dkim_record.split(';'):
+            tag = tag.strip()
+            if tag.startswith('p='):
+                p_value = tag[2:].strip()
+                break
+
+        if not p_value:
+            print(f"{RED}No public key (p=) found in DKIM record.{RESET}")
+            return
+
+        if p_value == '':
+            print(f"{RED}DKIM record has been revoked (p= is empty).{RESET}")
+            return
+
+        key_der = base64.b64decode(p_value)
+        key_bits = _get_rsa_key_bits(key_der)
+
+        if key_bits is None:
+            print(f"{YELLOW}Could not determine key length (key may not be RSA or uses an unsupported format).{RESET}")
+            return
+
+        if key_bits < 1024:
+            print(f"{RED}Key length: {key_bits} bits — CRITICALLY WEAK. "
+                  f"Keys under 1024 bits are insecure and likely to be rejected.{RESET}")
+        elif key_bits < 2048:
+            print(f"{YELLOW}Key length: {key_bits} bits — WEAK WARNING. "
+                  f"1024-bit keys are deprecated; upgrade to 2048 bits or higher.{RESET}")
+        elif key_bits >= 4096:
+            print(f"{GREEN}Key length: {key_bits} bits — STRONG (4096-bit key).{RESET}")
+        else:
+            print(f"{GREEN}Key length: {key_bits} bits — OK (recommended minimum is 2048 bits).{RESET}")
+
+    except Exception as e:
+        print(f"{RED}Could not check DKIM key length: {e}{RESET}")
+
+
+def _get_rsa_key_bits(der_bytes):
+    """Parse a DER-encoded SubjectPublicKeyInfo structure and return the RSA modulus bit length."""
+
+    def parse_der_length(data, offset):
+        first = data[offset]
+        offset += 1
+        if first & 0x80 == 0:
+            return first, offset
+        num_bytes = first & 0x7f
+        length = int.from_bytes(data[offset:offset + num_bytes], 'big')
+        return length, offset + num_bytes
+
+    def skip_sequence_header(data, offset):
+        assert data[offset] == 0x30, "Expected SEQUENCE tag"
+        offset += 1
+        _, offset = parse_der_length(data, offset)
+        return offset
+
+    def skip_algorithm_identifier(data, offset):
+        assert data[offset] == 0x30, "Expected AlgorithmIdentifier SEQUENCE"
+        offset += 1
+        length, offset = parse_der_length(data, offset)
+        return offset + length
+
+    def parse_bit_string_content(data, offset):
+        assert data[offset] == 0x03, "Expected BIT STRING tag"
+        offset += 1
+        length, offset = parse_der_length(data, offset)
+        # First byte is the count of unused bits in the final byte
+        return data[offset + 1: offset + length]
+
+    try:
+        offset = 0
+        offset = skip_sequence_header(der_bytes, offset)       # SubjectPublicKeyInfo SEQUENCE
+        offset = skip_algorithm_identifier(der_bytes, offset)  # AlgorithmIdentifier
+        rsa_key_bytes = parse_bit_string_content(der_bytes, offset)  # BIT STRING → RSAPublicKey
+
+        # RSAPublicKey is itself a DER SEQUENCE { INTEGER modulus, INTEGER publicExponent }
+        offset = 0
+        offset = skip_sequence_header(rsa_key_bytes, offset)
+
+        assert rsa_key_bytes[offset] == 0x02, "Expected INTEGER tag for modulus"
+        offset += 1
+        modulus_length, offset = parse_der_length(rsa_key_bytes, offset)
+
+        modulus_bytes = rsa_key_bytes[offset: offset + modulus_length]
+        if modulus_bytes[0] == 0x00:   # strip DER sign byte
+            modulus_bytes = modulus_bytes[1:]
+
+        return len(modulus_bytes) * 8
+
+    except Exception:
+        return None
 
 
 # DMARC Checker
