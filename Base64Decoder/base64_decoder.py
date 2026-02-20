@@ -20,9 +20,9 @@ def decode_base64(text):
         print(f"Failed to decode Base64: {e}")
 
 def main_menu():
-    banner = pyfiglet.figlet_format("Base64 Tool")
+    banner = pyfiglet.figlet_format("Base64 Toolkit")
     print(GREEN + banner + RESET)
-    print(f"{GREEN}Welcome to the Base64 Encoder/Decoder - by VAND3RLINDEN!{RESET}")
+    print(f"{GREEN}Welcome to the Base64 Toolkit - by VAND3RLINDEN!{RESET}")
     print("Choose an option:")
     print("1. Encode text to Base64")
     print("2. Decode Base64 to text")
