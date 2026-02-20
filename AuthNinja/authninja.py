@@ -25,12 +25,106 @@ def query_spf(domain):
             if spf_record.startswith("v=spf1"):
                 print(f"{GREEN}SPF record for {domain}:{RESET}")
                 print(f"{spf_record}")
+                check_spf_dns_lookup_count(spf_record, domain)
+                check_spf_record_length(rdata)
                 return
         print(f"{RED}No SPF record found for {domain}.{RESET}")
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{RED}No DNS records found for {domain}.{RESET}")
     except Exception as e:
         print(f"{RED}An error occurred: {e}{RESET}")
+
+
+# SPF DNS Lookup Count Checker (max 10, including child lookups)
+def count_spf_lookups(spf_record, visited=None):
+    """Recursively count DNS lookups in an SPF record, following includes and redirects."""
+    if visited is None:
+        visited = set()
+
+    lookup_count = 0
+    # Mechanisms that require a DNS lookup
+    dns_mechanisms = ('include:', 'a:', 'a ', 'a\t', 'mx:', 'mx ', 'mx\t',
+                      'ptr:', 'ptr ', 'ptr\t', 'exists:', 'redirect=')
+
+    terms = spf_record.split()
+    for term in terms:
+        term_lower = term.lower().lstrip('+-?~')
+
+        # Handle 'a' and 'mx' with no argument (lookup on current domain)
+        if term_lower in ('a', 'mx', 'ptr'):
+            lookup_count += 1
+
+        elif term_lower.startswith('include:'):
+            lookup_count += 1
+            child_domain = term_lower[len('include:'):]
+            if child_domain not in visited:
+                visited.add(child_domain)
+                child_record = _fetch_spf_record(child_domain)
+                if child_record:
+                    lookup_count += count_spf_lookups(child_record, visited)
+
+        elif term_lower.startswith('redirect='):
+            lookup_count += 1
+            redirect_domain = term_lower[len('redirect='):]
+            if redirect_domain not in visited:
+                visited.add(redirect_domain)
+                child_record = _fetch_spf_record(redirect_domain)
+                if child_record:
+                    lookup_count += count_spf_lookups(child_record, visited)
+
+        elif term_lower.startswith('a:') or term_lower.startswith('mx:') or \
+             term_lower.startswith('ptr:') or term_lower.startswith('exists:'):
+            lookup_count += 1
+
+    return lookup_count
+
+
+def _fetch_spf_record(domain):
+    """Helper to fetch an SPF TXT record for a domain. Returns the record string or None."""
+    try:
+        answers = dns.resolver.resolve(domain, 'TXT')
+        for rdata in answers:
+            record = ''.join([s.decode() for s in rdata.strings])
+            if record.startswith('v=spf1'):
+                return record
+    except Exception:
+        pass
+    return None
+
+
+def check_spf_dns_lookup_count(spf_record, domain):
+    """Check the total DNS lookup count (including child lookups) against the RFC limit of 10."""
+    print(f"\n{GREEN}--- SPF DNS Lookup Count Check ---{RESET}")
+    try:
+        total_lookups = count_spf_lookups(spf_record, visited={domain})
+        if total_lookups > 10:
+            print(f"{RED}DNS lookup count: {total_lookups} — EXCEEDS the limit of 10! "
+                  f"This will cause SPF PermError and emails may fail authentication.{RESET}")
+        elif total_lookups >= 8:
+            print(f"{YELLOW}DNS lookup count: {total_lookups} — WARNING: Close to the limit of 10. "
+                  f"Consider optimising your SPF record.{RESET}")
+        else:
+            print(f"{GREEN}DNS lookup count: {total_lookups} — OK (limit is 10).{RESET}")
+    except Exception as e:
+        print(f"{RED}Could not complete DNS lookup count check: {e}{RESET}")
+
+
+# SPF Record String Length Checker (max 255 chars per string)
+def check_spf_record_length(rdata):
+    """Check each string in the SPF TXT record against the 255-character per-string RFC limit."""
+    print(f"\n{GREEN}--- SPF Record String Length Check ---{RESET}")
+    all_ok = True
+    for i, txt_string in enumerate(rdata.strings):
+        string_decoded = txt_string.decode()
+        length = len(string_decoded)
+        if length > 255:
+            print(f"{RED}String {i + 1}: {length} characters — EXCEEDS the 255-character limit!{RESET}")
+            print(f"  → \"{string_decoded[:60]}...\"")
+            all_ok = False
+        else:
+            print(f"{GREEN}String {i + 1}: {length} characters — OK (limit is 255).{RESET}")
+    if all_ok:
+        print(f"{GREEN}All SPF record strings are within the 255-character limit.{RESET}")
 
 
 # DKIM Checker
