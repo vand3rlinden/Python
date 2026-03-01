@@ -1,4 +1,4 @@
-![IMAGE](mdosafelinksdecoder-demo/mdo-safelinks-decoder-logo.png)
+![IMAGE](mdosafelinksdecoder-demo/mdosafelinksdecoder-logo.png)
 
 **MDO SafeLinks Decoder** is created to decode SafeLinks URLs locally without using any online third-party tools. Since most SafeLinks URLs contain the user’s UPN, it is not confidential to decode them through online third-party tools. 
 
@@ -16,4 +16,4 @@ Decoding SafeLinks URLs is sometimes necessary when investigating a link. Howeve
 4. Start **MDO SafeLinks Decoder**: `python3 mdo_safelinks_decoder.py`
 
 ## MDO SafeLinks Decoder Menu
-![IMAGE](mdosafelinksdecoder-demo/mdo-safelinks-decoder-startmenu.png)
+![IMAGE](mdosafelinksdecoder-demo/mdosafelinksdecoder-startmenu.png)
