@@ -6,8 +6,7 @@ from colorama import Fore, Style
 # Add your API keys here
 VIRUSTOTAL_API_KEY = "your_virustotal_api_key"
 ABUSEIPDB_API_KEY = "your_abuseipdb_api_key"
-SCAMALYTICS_API_KEY = "your_scamalytics_api_key"
-SCAMALYTICS_USERNAME = "your_scamalytics_username"
+IPINFO_API_KEY = "your_ipinfo_api_key"
 
 # ANSI escape codes for colors
 GREEN = "\033[92m"
@@ -25,7 +24,7 @@ def print_menu():
     print("1. Scan URL with VirusTotal")
     print("2. Scan File Hash with VirusTotal")
     print("3. Scan IP Address with AbuseIPDB")
-    print("4. Scan IP Address with Scamalytics")
+    print("4. Scan IP Address with IPInfo")
     print("5. Exit")
 
 # VirusTotal
@@ -95,34 +94,24 @@ def scan_ip_abuseipdb(ip_address):
     else:
         print(f"Error: {response.status_code} - {response.text}")
 
-# Scamalytics
-def scan_ip_scamalytics(ip_address):
-    print(f"{GREEN}Scanning IP Address with Scamalytics{RESET}")
-    api_url = f"https://api12.scamalytics.com/{SCAMALYTICS_USERNAME}/?key={SCAMALYTICS_API_KEY}&ip={ip_address}"
+# IPInfo
+def scan_ip_ipinfo(ip_address):
+    print(f"{GREEN}Scanning IP Address with IPInfo{RESET}")
+    api_url = f"https://api.ipinfo.io/lite/{ip_address}/?token={IPINFO_API_KEY}"
 
     response = requests.get(api_url)
     if response.status_code == 200:
         result = response.json()
-        print(f"{GREEN}Scamalytics Scan Results {RESET}")
+        print(f"{GREEN}IPInfo Scan Results{RESET}")
         print(f"{GREEN}IP Address:{RESET} {result.get('ip')}")
-        print(f"{GREEN}Risk Score:{RESET} {result.get('score')}")
-        print(f"{GREEN}Risk Level:{RESET} {result.get('risk')}")
-        print(f"{GREEN}URL:{RESET} {result.get('url')}")
-        print(f"Operator:")
-        print(f"{GREEN}ASN:{RESET} {result.get('as_number')}")
-        print(f"{GREEN}ISP:{RESET} {result.get('ISP Name')}")
-        print(f"{GREEN}ISP Fraud Score:{RESET} {result.get('ISP Fraud Score')}")
-        print(f"{GREEN}Organization Name:{RESET} {result.get('Organization Name')}")
-        print(f"{GREEN}Connection Type:{RESET} {result.get('connection_type')}")
         print(f"Location:")
-        print(f"{GREEN}Country Name:{RESET} {result.get('ip_country_name')}")
-        print(f"{GREEN}Country Code:{RESET} {result.get('ip_country_code')}")
-        print(f"{GREEN}State / Province:{RESET} {result.get('ip_state_name')}")
-        print(f"{GREEN}City:{RESET} {result.get('ip_city')}")
-        print(f"{GREEN}Postal Code:{RESET} {result.get('ip_postcode')}")
-        print(f"{GREEN}Geo Location:{RESET} {result.get('ip_geolocation')}")
-        print(f"Proxies:")
-        print(f"{GREEN}Proxy Type:{RESET} {result.get('proxy_type')}")
+        print(f"{GREEN}Country:{RESET} {result.get('country')}")
+        print(f"{GREEN}Country Code:{RESET} {result.get('country_code')}")
+        print(f"{GREEN}Continent:{RESET} {result.get('continent')}")
+        print(f"{GREEN}Continent Code:{RESET} {result.get('continent_code')}")
+        print(f"Operator:")
+        print(f"{GREEN}ASN{RESET} {result.get('asn')}")
+        print(f"{GREEN}ISP{RESET} {result.get('as_name')}")
     else:
         print(f"Error: {response.status_code} - {response.text}")
 
@@ -142,8 +131,8 @@ def main():
             ip_address = input(f"{GREEN}Enter IP address to scan with AbuseIPDB: {RESET}")
             scan_ip_abuseipdb(ip_address)
         elif choice == "4":
-            ip_address = input(f"{GREEN}Enter IP address to scan with Scamalytics: {RESET}")
-            scan_ip_scamalytics(ip_address)
+            ip_address = input(f"{GREEN}Enter IP address to scan with IPInfo: {RESET}")
+            scan_ip_ipinfo(ip_address)
         elif choice == "5":
             print(f"{GREEN}Exiting...{RESET}")
             break
