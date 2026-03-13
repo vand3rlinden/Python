@@ -33,6 +33,5 @@ You can register on [IPInfo](https://ipinfo.io/pricing) to get a **free** API ke
 3. Browse to the path: `cd py_envs/scripts`
 4. Start ThreatHunterX: `python3 threathunterx.py`
 
-## ThreatHunterX demo
-### Menu:
+## ThreatHunterX Menu
 ![IMAGE](threathunterx-demo/threathunterx-menu.png)
