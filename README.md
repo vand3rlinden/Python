@@ -14,6 +14,8 @@ This repository contains Python projects that can serve as a Swiss Army knife fo
   - MDO SafeLinks Decoder is created to decode SafeLinks URLs locally without using any online third-party tools. Since most SafeLinks URLs contain the user’s UPN, it is not confidential to decode them through online third-party tools.
 - [Base64Decoder](https://github.com/vand3rlinden/Python/tree/main/Base64Decoder)
   - Toolkit for decode from Base64 and encode to Base64
+- [HTTPHeaderAnalyzer](https://github.com/vand3rlinden/Python/tree/main/HTTPHeaderAnalyzer)
+  - A tool that fetches and analyses Security HTTP response headers, flagging misconfigurations and missing headers with actionable remediation tips
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
