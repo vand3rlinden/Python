@@ -16,6 +16,8 @@ This repository contains Python projects that can serve as a Swiss Army knife fo
   - Toolkit for decode from Base64 and encode to Base64
 - [HTTPHeaderAnalyzer](https://github.com/vand3rlinden/Python/tree/main/HTTPHeaderAnalyzer)
   - A tool that fetches and analyses Security HTTP response headers, flagging misconfigurations and missing headers with actionable remediation tips
+- [md2pdf](https://github.com/vand3rlinden/Python/tree/main/md2pdf)
+  - Convert Markdown files to PDF with syntax-highlighted code blocks and styled tables
 
 ## Installation of Python
 1. Depending on your host operating system, you can download the latest version of Python from its [official website](https://www.python.org/downloads/) or install it using your package manager.
