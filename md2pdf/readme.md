@@ -18,23 +18,23 @@ sudo apt install libpango-1.0-0 libpangoft2-1.0-0
 ## Installation
 
 ```bash
-cd md-to-pdf
+cd md2pdf
 python3 -m pip install -e .
 ```
 
-This installs the `md-to-pdf` command and all required dependencies into your active Python environment.
+This installs the `md2pdf` command and all required dependencies into your active Python environment.
 
 ## Usage
 
 ```bash
 # Output PDF next to the source file (report.md → report.pdf)
-md-to-pdf report.md
+md2pdf report.md
 
 # Explicit output path
-md-to-pdf report.md -o /path/to/output.pdf
+md2pdf report.md -o /path/to/output.pdf
 
 # Dark theme
-md-to-pdf report.md --style dark
+md2pdf report.md --style dark
 ```
 
 ### Options

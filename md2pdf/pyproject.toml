@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "md-to-pdf"
+name = "md2pdf"
 version = "0.1.0"
 description = "Convert Markdown files to PDF with syntax-highlighted code blocks and styled tables."
 requires-python = ">=3.11"
@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-md-to-pdf = "md_to_pdf.__main__:main"
+md2pdf = "md_to_pdf.__main__:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/md_to_pdf"]
