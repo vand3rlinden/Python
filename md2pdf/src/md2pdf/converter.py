@@ -12,7 +12,7 @@ from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, guess_lexer, TextLexer
 from pygments.util import ClassNotFound
 
-from md_to_pdf.styles import DARK_CSS, LIGHT_CSS
+from md2pdf.styles import DARK_CSS, LIGHT_CSS
 
 ThemeName = Literal["light", "dark"]
 

@@ -15,10 +15,10 @@ dependencies = [
 ]
 
 [project.scripts]
-md2pdf = "md_to_pdf.__main__:main"
+md2pdf = "md2pdf.__main__:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/md_to_pdf"]
+packages = ["src/md2pdf"]
 
 [tool.ruff]
 src = ["src"]

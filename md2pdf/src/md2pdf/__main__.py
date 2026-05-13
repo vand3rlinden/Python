@@ -2,7 +2,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from md_to_pdf.converter import MarkdownToPdf
+from md2pdf.converter import MarkdownToPdf
 
 
 def main() -> None:
