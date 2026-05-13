@@ -81,8 +81,8 @@ class MarkdownToPdf:
             + "\npre.highlight .err { color: inherit; background: transparent; border: none; }"
         )
 
-    def convert(self, md_text: str, output_path: Path) -> None:
+    def convert(self, md_text: str, output_path: Path, base_url: Path | None = None) -> None:
         body = self._md.render(md_text)
         full_html = _wrap_html(body, self._css)
-        pdf_bytes = weasyprint.HTML(string=full_html).write_pdf()
+        pdf_bytes = weasyprint.HTML(string=full_html, base_url=str(base_url) if base_url else None).write_pdf()
         output_path.write_bytes(pdf_bytes)

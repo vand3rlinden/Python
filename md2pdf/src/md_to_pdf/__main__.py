@@ -28,7 +28,7 @@ def main() -> None:
     output_path: Path = args.output.resolve() if args.output else input_path.with_suffix(".pdf")
 
     md_text = input_path.read_text(encoding="utf-8")
-    MarkdownToPdf(args.style).convert(md_text, output_path)
+    MarkdownToPdf(args.style).convert(md_text, output_path, base_url=input_path.parent)
     print(f"PDF written to {output_path}")
 
 

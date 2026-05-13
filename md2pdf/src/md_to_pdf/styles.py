@@ -73,13 +73,13 @@ th, td {
 }
 
 th {
-    background: #dde3ea;
+    background: #c8e6c9;
     font-weight: 600;
     color: #1a1a1a;
 }
 
 tr:nth-child(even) td {
-    background: #f2f4f7;
+    background: #f0f7f0;
 }
 
 blockquote {
@@ -186,13 +186,13 @@ th, td {
 }
 
 th {
-    background: #2e3a4a;
+    background: #1e3d2a;
     font-weight: 600;
     color: #f0f0f0;
 }
 
 tr:nth-child(even) td {
-    background: #272727;
+    background: #242e24;
 }
 
 blockquote {
