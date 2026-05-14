@@ -4,7 +4,7 @@ LIGHT_CSS = """
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: Verdana, sans-serif;
     font-size: 11pt;
     line-height: 1.6;
     color: #1a1a1a;
@@ -114,7 +114,7 @@ DARK_CSS = """
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: Verdana, sans-serif;
     font-size: 11pt;
     line-height: 1.6;
     color: #e0e0e0;
