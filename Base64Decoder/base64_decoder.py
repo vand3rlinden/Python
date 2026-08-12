@@ -24,18 +24,18 @@ def main_menu():
     print(GREEN + banner + RESET)
     print(f"{GREEN}Welcome to the Base64 Toolkit - by VAND3RLINDEN!{RESET}")
     print("Choose an option:")
-    print("1. Encode text to Base64")
-    print("2. Decode Base64 to text")
+    print("1. Decode Base64 to text")
+    print("2. Encode text to Base64")
     print("3. Exit")
 
     choice = input("Enter your choice (1/2/3): ").strip()
 
     if choice == "1":
-        text = input("Enter the text to encode: ").strip()
-        encode_base64(text)
-    elif choice == "2":
         text = input("Paste the Base64 string to decode: ").strip()
         decode_base64(text)
+    elif choice == "2":
+        text = input("Enter the text to encode: ").strip()
+        encode_base64(text)
     elif choice == "3":
         print("Goodbye (:")
         sys.exit(0)
