@@ -1,4 +1,5 @@
 import hashlib
+import subprocess
 import dns.resolver
 import pyfiglet
 from colorama import Fore, Style
@@ -264,6 +265,27 @@ def query_dmarc(domain):
         print(f"{RED}An error occurred: {e}{RESET}")
 
 
+# Fetch the MTA-STS policy file over HTTPS using curl
+def fetch_mta_sts_policy(policy_url):
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", policy_url],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if result.returncode == 0 and result.stdout:
+            print(f"{GREEN}MTA-STS policy content:{RESET}")
+            print(result.stdout.strip())
+        else:
+            error_output = result.stderr.strip() or "empty response"
+            print(f"{RED}Could not fetch MTA-STS policy: {error_output}{RESET}")
+    except FileNotFoundError:
+        print(f"{RED}curl is not installed, cannot fetch MTA-STS policy.{RESET}")
+    except subprocess.TimeoutExpired:
+        print(f"{RED}Fetching MTA-STS policy timed out.{RESET}")
+
+
 # MTA-STS Checker
 def query_mta_sts(domain):
     try:
@@ -273,7 +295,9 @@ def query_mta_sts(domain):
             mta_sts_record = ''.join([txt_string.decode() for txt_string in rdata.strings])
             print(f"{GREEN}MTA-STS record for {domain}:{RESET}")
             print(f"{mta_sts_record}")
-            print(f"Policy URL: {GREEN}https://mta-sts.{domain}/.well-known/mta-sts.txt{RESET}")
+            policy_url = f"https://mta-sts.{domain}/.well-known/mta-sts.txt"
+            print(f"Policy URL: {GREEN}{policy_url}{RESET}")
+            fetch_mta_sts_policy(policy_url)
     except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
         print(f"{RED}No MTA-STS record found for {domain}.{RESET}")
     except Exception as e:
