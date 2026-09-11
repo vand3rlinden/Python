@@ -2,10 +2,6 @@
 This repository contains Python projects that can serve as a Swiss Army knife for your day-to-day work in cybersecurity.
 
 ## Current Python projects
-- [ThreatHunterX](https://github.com/vand3rlinden/Python/tree/main/ThreatHunterX)
-  - ThreatHunterX is a tool designed to assist SOC Analysts. The primary goal of ThreatHunterX is to perform routine checks and free up time for more in-depth analysis.
-- [ThreatHunterX-Flask](https://github.com/vand3rlinden/Python/tree/main/ThreatHunterX-Flask)
-  - ThreatHunterX-Flask is a local browser tool designed to assist SOC analysts. The primary goal of ThreatHunterX-Flask is the same as the terminal application of ThreatHunterX: to free up time for SOC analysts by bringing all tools together into one session.
 - [AuthNinja](https://github.com/vand3rlinden/Python/tree/main/AuthNinja)
   - AuthNinja is a tool designed to quickly check outbound and inbound email authentication to get settings such as SPF, DKIM, DMARC, MTA-STST and SMTP DANE directly from the terminal.
 - [SubnetBuddy](https://github.com/vand3rlinden/Python/tree/main/SubnetBuddy)
