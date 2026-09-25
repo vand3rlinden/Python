@@ -10,6 +10,8 @@ The VirusTotal API key lives server-side only, in a `.env` file the Flask
 backend reads. The browser never sees it, the frontend only ever talks to
 this app's own `/api/lookup` endpoint.
 
+![IMAGE](threathunterx.png)
+
 ## Setup
 
 1. **Get a VirusTotal API key**: https://www.virustotal.com/gui/my-apikey
