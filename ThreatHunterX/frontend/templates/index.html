@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreatHunterX</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="crt-wrap">
+    <header class="site-header">
+      <pre class="logo" aria-hidden="true">
+ _____ _                    _   _   _             _             __  __
+|_   _| |__  _ __ ___  __ _| |_| | | |_   _ _ __ | |_ ___ _ __  \ \/ /
+  | | | '_ \| '__/ _ \/ _` | __| |_| | | | | '_ \| __/ _ \ '__|  \  /
+  | | | | | | | |  __/ (_| | |_|  _  | |_| | | | | ||  __/ |     /  \
+  |_| |_| |_|_|  \___|\__,_|\__|_| |_|\__,_|_| |_|\__\___|_|    /_/\_\
+
+      </pre>
+      <p class="tagline">// VirusTotal v3 lookup · URLs · IPs · Domains · Hashes</p>
+    </header>
+
+    <main>
+      <form id="search-form" class="search-panel" autocomplete="off">
+        <label for="search-input" class="prompt-label">root@threatx:~$</label>
+        <input
+          id="search-input"
+          name="query"
+          type="text"
+          placeholder="paste a URL, IP, domain, or MD5/SHA1/SHA256 hash..."
+          spellcheck="false"
+          maxlength="2048"
+          required
+        >
+        <button id="search-btn" type="submit">SCAN</button>
+      </form>
+
+      <div id="status-bar" class="status-bar" role="status" aria-live="polite"></div>
+
+      <div id="error-box" class="error-box" hidden></div>
+
+      <section id="results" class="results" aria-live="polite"></section>
+    </main>
+
+    <footer class="site-footer">
+      <span>ThreatHunterX — by VAND3RLINDEN</span>
+    </footer>
+  </div>
+
+  <template id="tpl-engine-row">
+    <tr>
+      <td class="cell-engine"></td>
+      <td class="cell-category"></td>
+      <td class="cell-result"></td>
+      <td class="cell-method"></td>
+    </tr>
+  </template>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
