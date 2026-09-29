@@ -9,20 +9,21 @@ try:
 except ImportError:
     HAS_TERMIOS = False
 
+try:
+    import msvcrt
+    HAS_MSVCRT = True
+except ImportError:
+    HAS_MSVCRT = False
+
 # ANSI escape codes
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
-def read_long_line(prompt=""):
-    """Read a line of input without the terminal's canonical-mode line
-    length cap (MAX_CANON, 1024 bytes on macOS), which truncates/mangles
-    long pasted URLs when read via input()."""
-    if not HAS_TERMIOS or not sys.stdin.isatty():
-        return input(prompt)
-
-    sys.stdout.write(prompt)
-    sys.stdout.flush()
-
+def _read_long_line_posix(prompt):
+    """POSIX (Linux/macOS/BSD) raw read, bypassing the tty driver's
+    canonical-mode line length cap (MAX_CANON: 4096 bytes on Linux,
+    1024 on macOS), which truncates/mangles long pasted URLs when
+    read via input()."""
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     buf = []
@@ -57,6 +58,52 @@ def read_long_line(prompt=""):
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
     return "".join(buf).strip()
+
+def _read_long_line_windows(prompt):
+    """Windows raw read via msvcrt, bypassing the console's own
+    line-editing buffer the same way the POSIX branch bypasses
+    MAX_CANON."""
+    buf = []
+    while True:
+        ch = msvcrt.getwch()
+        if ch in ("\r", "\n"):
+            sys.stdout.write("\n")
+            break
+        elif ch == "\x08":  # backspace
+            if buf:
+                buf.pop()
+                sys.stdout.write("\b \b")
+                sys.stdout.flush()
+        elif ch == "\x03":  # Ctrl-C
+            raise KeyboardInterrupt
+        elif ch == "\x1a":  # Ctrl-Z (EOF)
+            break
+        else:
+            buf.append(ch)
+            sys.stdout.write(ch)
+            sys.stdout.flush()
+
+    return "".join(buf).strip()
+
+def read_long_line(prompt=""):
+    """Read a line of input without the terminal/console's own line
+    length cap, which can truncate or mangle long pasted URLs when
+    read via input(). Uses a raw per-character read on POSIX
+    (termios) and Windows (msvcrt) alike, falling back to input()
+    when neither is available or stdin isn't an interactive tty
+    (e.g. piped/redirected input)."""
+    if not sys.stdin.isatty():
+        return input(prompt)
+
+    sys.stdout.write(prompt)
+    sys.stdout.flush()
+
+    if HAS_TERMIOS:
+        return _read_long_line_posix(prompt)
+    elif HAS_MSVCRT:
+        return _read_long_line_windows(prompt)
+    else:
+        return input()
 
 def decode_safelink(safelink_url):
     parsed = urllib.parse.urlparse(safelink_url)
